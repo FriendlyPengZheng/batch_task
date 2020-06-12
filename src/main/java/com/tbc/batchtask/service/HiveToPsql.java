@@ -3,5 +3,5 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Service;
 
 @Service
-public interface HiveToHbase extends CommandLineRunner {
+public interface HiveToPsql extends CommandLineRunner {
 }

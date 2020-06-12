@@ -24,10 +24,15 @@ public class SparkConfig{
 
     {
         return SparkSession.builder().master(masterUri).appName(appName)
+                .config("spark.sql.orc.enabled","true")
+                .config("spark.sql.hive.convertMetastoreOrc","true")
+                .config("spark.sql.orc.char.enabled","true")
+                .config("spark.sql.orc.impl","hive")
+                .config("spark.sql.orc.compression.codec","snappy")
+
                 //可以使用集群中的jar包
                 //.config("spark.yarn.jars","hdfs://sdghbigdata/user/spark/jars/*")
                 .enableHiveSupport().getOrCreate();
-
     }
 
     @Bean

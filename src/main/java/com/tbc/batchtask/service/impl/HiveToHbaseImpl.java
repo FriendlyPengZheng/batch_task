@@ -22,7 +22,7 @@ public class HiveToHbaseImpl implements HiveToHbase {
     String sqlPvDaily = "select dt as date,count(1) as pv from  sdgh_dwd.dwd_ps_event_module_enter_log where dt='%s' group by dt";
 
     @Override
-    public void run() {
+    public void run(String... args) throws Exception {
         spark.sql("set spark.sql.orc.compression.codec = snappy");
         Dataset<Row> modulePvResults = spark.sql(getFormatSql(sqlModule));
         modulePvResults.foreachPartition(new CustomModulePvDailyFunction("eventclickpv"));
